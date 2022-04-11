@@ -38,7 +38,8 @@ public class Patient {
 	  protected String antecedant ;
 	  
 	  
-	
+	  @OneToMany(targetEntity=Consultation.class, mappedBy = "patient",fetch=FetchType.LAZY)
+		private List<Consultation>liste1=new ArrayList<Consultation>();
 	  
 	 
 	public Generaliste getGeneraliste() {
@@ -49,6 +50,17 @@ public class Patient {
 	}
 	@ManyToOne()
 		protected Generaliste generaliste;
+	public Patient(@NotBlank @Size(max = 100) String username, @NotBlank @Size(max = 100) @Email String email,
+			long telephone, String gender, String dateNaiss, String antecedant, Generaliste generaliste) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.telephone = telephone;
+		this.gender = gender;
+		this.dateNaiss = dateNaiss;
+		this.antecedant = antecedant;
+		this.generaliste = generaliste;
+	}
 	public Patient(long cin, @NotBlank @Size(max = 100) String username, @NotBlank @Size(max = 100) @Email String email,
 			Long telephone, String gender, String dateNaiss,String antecedant,Generaliste generaliste) {
 		super();

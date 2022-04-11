@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 @Entity
 @DiscriminatorValue(value="generaliste")
@@ -17,9 +20,12 @@ public class Generaliste extends User {
 
 	private String gender ;
 	private long telephone;
-	@OneToMany(targetEntity=Patient.class, mappedBy = "generaliste",fetch=FetchType.LAZY)
+	@OneToMany(targetEntity=Consultation.class, mappedBy = "generaliste",fetch=FetchType.LAZY)
+	
 	private List<Patient>liste=new ArrayList<Patient>();
 	  
+	@OneToMany(targetEntity=Consultation.class, mappedBy = "generaliste",fetch=FetchType.LAZY)
+	private List<Consultation>liste1=new ArrayList<Consultation>();
 	  
 	 public Generaliste(String username, String email, String password, String gender, long telephone , byte[] image , LocalDate date_inscription  , String role  ) {
 			super(username,email,password,image , date_inscription , role );

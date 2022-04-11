@@ -71,8 +71,8 @@ public class PatientController {
 	}
 	
 	
-	@GetMapping("/patient/{cin}")
-	public Patient productById(@PathVariable("cin") long cin ){
+	@GetMapping("/patient/{id}/{cin}")
+	public Patient productById(@PathVariable("cin") long cin, @PathVariable("id") @ModelAttribute("id") long id ){
 		return pr.findById(cin).get();
 	}
 	@DeleteMapping("/deletepatient/{id}/{cin}")
@@ -85,7 +85,7 @@ public class PatientController {
 	public List<Patient> patientByName(@PathVariable("username") String username ){
 		return pr.findByUsernameContains(username);
 	}
-	 @PutMapping("/updatePatient/{cin}")
+	 @PutMapping("/updatePatient/{id}/{cin}")
 	  public ResponseEntity<Patient> updateGeneraliste(@PathVariable("cin") long cin, @RequestBody Patient Utilisateur) {
 	    System.out.println("Update Utilisateur with ID = " + cin + "...");
 	 

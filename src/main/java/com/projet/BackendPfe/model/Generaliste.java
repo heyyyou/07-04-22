@@ -20,12 +20,12 @@ public class Generaliste extends User {
 
 	private String gender ;
 	private long telephone;
-	@OneToMany(targetEntity=Consultation.class, mappedBy = "generaliste",fetch=FetchType.LAZY)
+	@OneToMany(targetEntity=DataConsult.class, mappedBy = "generaliste",fetch=FetchType.LAZY)
 	
 	private List<Patient>liste=new ArrayList<Patient>();
 	  
-	@OneToMany(targetEntity=Consultation.class, mappedBy = "generaliste",fetch=FetchType.LAZY)
-	private List<Consultation>liste1=new ArrayList<Consultation>();
+	@OneToMany(targetEntity=DataConsult.class, mappedBy = "generaliste",fetch=FetchType.LAZY)
+	private List<DataConsult>liste1=new ArrayList<DataConsult>();
 	  
 	 public Generaliste(String username, String email, String password, String gender, long telephone , byte[] image , LocalDate date_inscription  , String role  ) {
 			super(username,email,password,image , date_inscription , role );

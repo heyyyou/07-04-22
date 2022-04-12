@@ -19,8 +19,8 @@ public class Expert extends User {
 	protected long telephone ;
 	@ManyToOne
 	private AdminMedicalManager admin;
-	 @OneToMany(targetEntity=Consultation.class, mappedBy = "expert",fetch=FetchType.LAZY)
-		private List<Consultation>liste1=new ArrayList<Consultation>();
+	 @OneToMany(targetEntity=DataConsult.class, mappedBy = "expert",fetch=FetchType.LAZY)
+		private List<DataConsult>liste1=new ArrayList<DataConsult>();
 	public Expert( String username, String email, String password, 
 			String gender, long telephone , byte[] image, LocalDate date_inscription , String role   ) {
 		super(username,email,password,image , date_inscription , role );

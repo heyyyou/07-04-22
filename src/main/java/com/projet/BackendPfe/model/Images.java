@@ -1,6 +1,7 @@
 package com.projet.BackendPfe.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -32,9 +33,8 @@ public class Images {
 		/*@ManyToOne()
 		protected Consultation consultation;
 */
-	  @ManyToMany
-	
-		private List<Consultation>Consultation;
+	  @OneToMany(mappedBy="images",fetch=FetchType.EAGER)
+	  private Collection<Consultation>consultation;
 	    private String fileName;
 
 	    private String fileType;

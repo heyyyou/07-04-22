@@ -38,8 +38,8 @@ public class Patient {
 	  protected String antecedant ;
 	  
 	  
-	  @OneToMany(targetEntity=Consultation.class, mappedBy = "patient",fetch=FetchType.LAZY)
-		private List<Consultation>liste1=new ArrayList<Consultation>();
+	  @OneToMany(targetEntity=DataConsult.class, mappedBy = "patient",fetch=FetchType.LAZY)
+		private List<DataConsult>liste1=new ArrayList<DataConsult>();
 	  
 	 
 	public Generaliste getGeneraliste() {

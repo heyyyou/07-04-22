@@ -13,6 +13,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ import com.projet.BackendPfe.repository.DBFileRepository;
 import com.projet.BackendPfe.request.UploadFileResponse;
 import com.projet.BackendPfe.services.DBFileStorageService;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class ImageController {
 
@@ -43,7 +44,6 @@ public class ImageController {
     @PostMapping("/uploadFile/{id}/{cin}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file  ,@RequestParam ("type") String type) {
     	Images dbFile = dbFileStorageService.storeFile(file , type);
-
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(dbFile.getId())
@@ -60,7 +60,6 @@ public class ImageController {
                 .map(file -> uploadFile(file , type))
                 .collect(Collectors.toList());
     }
-
     @GetMapping("/downloadFile/{fileId}/{id}/{cin}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) {
         // Load file from database

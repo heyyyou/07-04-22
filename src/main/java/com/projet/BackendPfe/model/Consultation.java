@@ -1,49 +1,52 @@
 package com.projet.BackendPfe.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Consultation {
-	/*@OneToMany(targetEntity=ImageConsultation.class, mappedBy = "consultation")
-	private List<ImageConsultation>liste1=new ArrayList<ImageConsultation>();*/
-	@ManyToMany(mappedBy = "Consultation",fetch = FetchType.LAZY)
-	private List<Images>Images;
+	public Consultation(DataConsult dataConsult, Images images) {
+		super();
+		this.dataConsult = dataConsult;
+		this.images = images;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@ManyToOne()
-	protected Generaliste generaliste;
-	@ManyToOne()
-	protected Patient patient;
-	public Generaliste getGeneraliste() {
-		return generaliste;
-	}
-	public void setGeneraliste(Generaliste generaliste) {
-		this.generaliste = generaliste;
-	}
-	public Patient getPatient() {
-		return patient;
-	}
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
-	public Expert getExpert() {
-		return expert;
-	}
-	public void setExpert(Expert expert) {
-		this.expert = expert;
-	}
-	@ManyToOne()
-	protected Expert expert;
-	 
+@ManyToOne()
+private DataConsult dataConsult;
+@ManyToOne()
+private Images images;
+public Consultation() {
+	
+}
+public long getId() {
+	return id;
+}
+public void setId(long id) {
+	this.id = id;
+}
+public DataConsult getDataConsult() {
+	return dataConsult;
+}
+public void setDataConsult(DataConsult dataConsult) {
+	this.dataConsult = dataConsult;
+}
+public Images getImages() {
+	return images;
+}
+public void setImages(Images images) {
+	this.images = images;
+}
+public Consultation(long id, DataConsult dataConsult, Images images) {
+	super();
+	this.id = id;
+	this.dataConsult = dataConsult;
+	this.images = images;
+}
+
 }
